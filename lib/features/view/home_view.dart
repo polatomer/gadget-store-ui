@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gadget_store_ui/product/constants/color_constants.dart';
 import 'package:gadget_store_ui/product/widget/lvb/category/category_list_view.dart';
+import 'package:gadget_store_ui/product/widget/lvb/product/product_list_view.dart';
 import 'package:kartal/kartal.dart';
 
 class HomeView extends StatefulWidget {
@@ -15,7 +17,8 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: _appBar(),
         body: Padding(
-          padding: context.padding.onlyTopNormal,
+          padding:
+              context.padding.onlyTopNormal + context.padding.horizontalLow,
           child: Column(
             children: [
               Expanded(
@@ -33,43 +36,7 @@ class _HomeViewState extends State<HomeView> {
                       padding: context.padding.onlyTopNormal,
                       child: SizedBox(
                         height: context.sized.dynamicHeight(1),
-                        child: GridView.builder(
-                          physics: const ScrollPhysics(
-                              parent: NeverScrollableScrollPhysics()),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                          ),
-                          itemCount: 8,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              color: Colors.white,
-                              elevation: 0.1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                      child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.asset('assets/png/ic_airpods.png'),
-                                      Padding(
-                                        padding:
-                                            context.padding.onlyRightNormal +
-                                                context.padding.onlyTopLow,
-                                        child: const Icon(Icons.heart_broken),
-                                      )
-                                    ],
-                                  )),
-                                  const Text('Apple Airpods'),
-                                  const Text(r'$200.00')
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                        child: const ProductListView(),
                       ),
                     ),
                   ],
@@ -79,19 +46,35 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
+          height: context.sized.dynamicHeight(.11),
           elevation: 0,
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(20)),
+                color: ColorConstants.strechLimo,
+                borderRadius: BorderRadius.circular(20)),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.home)),
                 IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.heart_broken)),
+                    onPressed: () {},
+                    icon: SizedBox(
+                        height: context.sized.dynamicHeight(.03),
+                        child: Image.asset('assets/png/ic_home.png'))),
                 IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.shopping_basket)),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.home)),
+                    onPressed: () {},
+                    icon: SizedBox(
+                        height: context.sized.dynamicHeight(.028),
+                        child: Image.asset('assets/png/ic_heart.png'))),
+                IconButton(
+                    onPressed: () {},
+                    icon: SizedBox(
+                        height: context.sized.dynamicHeight(.033),
+                        child: Image.asset('assets/png/ic_basket.png'))),
+                IconButton(
+                    onPressed: () {},
+                    icon: SizedBox(
+                        height: context.sized.dynamicHeight(.034),
+                        child: Image.asset('assets/png/ic_profile.png'))),
               ],
             ),
           ),
@@ -100,8 +83,19 @@ class _HomeViewState extends State<HomeView> {
 
   AppBar _appBar() {
     return AppBar(
-      leading: const CircleAvatar(),
-      actions: const [Icon(Icons.search_outlined)],
+      leading: Padding(
+        padding: context.padding.onlyLeftLow,
+        child: CircleAvatar(
+          child: Image.asset('assets/png/ic_avatar.png'),
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: context.padding.onlyRightLow,
+          child: IconButton(
+              onPressed: () {}, icon: Image.asset('assets/png/ic_search.png')),
+        )
+      ],
     );
   }
 }

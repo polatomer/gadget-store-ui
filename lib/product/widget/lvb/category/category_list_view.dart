@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gadget_store_ui/product/widget/lvb/category/category_list.dart';
+import 'package:kartal/kartal.dart';
 
 class CategoryListView extends StatefulWidget {
   const CategoryListView({super.key});
@@ -27,6 +28,8 @@ class _CategoryListViewState extends State<CategoryListView> {
             onPressed: () {},
             child: Text(
               _items[index].title,
+              style: context.general.textTheme.titleMedium
+                  ?.copyWith(fontWeight: FontWeight.w600),
             ));
       },
     );
