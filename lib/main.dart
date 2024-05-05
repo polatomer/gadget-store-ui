@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gadget_store_ui/features/view/start_view.dart';
+import 'package:gadget_store_ui/features/view/home_view.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Material App',
-      home: StartView(),
+      home: HomeView(),
     );
   }
 }
